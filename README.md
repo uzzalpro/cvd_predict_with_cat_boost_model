@@ -19,7 +19,7 @@
 
 ### Data link:
 
-- Kaggle: https://www.kaggle.com/datasets/moro23/easyvisa-dataset
+- Kaggle: https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset
 
 
 
@@ -38,15 +38,15 @@
 ## How to run?
 
 ```bash
-git clone https://github.com/entbappy/End-to-End-Machine-Learning-Project-Implementation
+git clone https://github.com/uzzalpro/cvd_predict_with_cat_boost_model
 ```
 
 ```bash
-conda create -n visa python=3.8 -y
+conda create -n cvd python=3.8 -y
 ```
 
 ```bash
-conda activate visa
+conda activate cvd
 ```
 
 ```bash
@@ -59,7 +59,7 @@ pip install -r requirements.txt
 ```bash
 
 
-export MONGODB_URL="mongodb+srv://entbappy:entbappy@cluster0.3lowor9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+export MONGODB_URL="mongodb+srv://<db_user>:<password>@cluster0.fspozs0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
 
@@ -103,7 +103,7 @@ export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
 
 	
 ## 3. Create ECR repo to store/save docker image
-    - Save the URI: 315865595366.dkr.ecr.us-east-1.amazonaws.com/usvisarepo
+    - Save the URI: 315865595366.dkr.ecr.us-east-1.amazonaws.com/cvdrepo
 
 	
 ## 4. Create EC2 machine (Ubuntu) 
