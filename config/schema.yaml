@@ -44,22 +44,22 @@ drop_columns:
   - thal
 
 # for data transformation
-# num_features:
-#   - no_of_employees
-#   - prevailing_wage
-#   - company_age
+num_features:
+  - trestbps
+  - thalch
+  - oldpeak
 
-# or_columns:
-#   - has_job_experience
-#   - requires_job_training
-#   - full_time_position
-#   - education_of_employee
+or_columns:
+  - cp
+  - restecg
+  - slope
 
-# oh_columns:
-#   - continent
-#   - unit_of_wage
-#   - region_of_employment
+oh_columns:
+  - sex
 
-# transform_columns:
-#   - no_of_employees
-#   - company_age
+transform_columns:
+  - age
+  - trestbps
+  - thalch
+  - exang
+  - oldpeak

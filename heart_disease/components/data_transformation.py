@@ -3,6 +3,8 @@ import sys
 import numpy as np
 import pandas as pd
 from imblearn.combine import SMOTEENN
+from imblearn.over_sampling import SMOTE
+
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder, PowerTransformer
 from sklearn.compose import ColumnTransformer
@@ -111,57 +113,60 @@ class DataTransformation:
 
                 logging.info("Got train features and test features of Training dataset")
 
-                input_feature_train_df['company_age'] = CURRENT_YEAR-input_feature_train_df['yr_of_estab']
 
-                logging.info("Added company_age column to the Training dataset")
 
+                # Drop unnecessary columns
                 drop_cols = self._schema_config['drop_columns']
-
                 logging.info("drop the columns in drop_cols of Training dataset")
-
                 input_feature_train_df = drop_columns(df=input_feature_train_df, cols = drop_cols)
                 
-                target_feature_train_df = target_feature_train_df.replace(
-                    TargetValueMapping()._asdict()
-                )
 
 
                 input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN], axis=1)
-
                 target_feature_test_df = test_df[TARGET_COLUMN]
 
 
-                input_feature_test_df['company_age'] = CURRENT_YEAR-input_feature_test_df['yr_of_estab']
 
-                logging.info("Added company_age column to the Test dataset")
 
                 input_feature_test_df = drop_columns(df=input_feature_test_df, cols = drop_cols)
-
                 logging.info("drop the columns in drop_cols of Test dataset")
+     
 
-                target_feature_test_df = target_feature_test_df.replace(
-                TargetValueMapping()._asdict()
-                )
+                # ================================
+                # Remove missing and duplicate rows (aligned with target)
+                # ================================
+                logging.info("Removing missing values and duplicates (aligned with target)")
+
+                # Combine -> drop -> split (TRAIN)
+                before_train = input_feature_train_df.shape[0]
+                train_combined = pd.concat([input_feature_train_df, target_feature_train_df], axis=1)
+                train_combined = train_combined.dropna().drop_duplicates()
+                input_feature_train_df = train_combined.drop(columns=[TARGET_COLUMN])
+                target_feature_train_df = train_combined[TARGET_COLUMN]
+                logging.info(f"Train cleaned: {before_train} -> {input_feature_train_df.shape[0]} rows")
+
+                # Combine -> drop -> split (TEST)
+                before_test = input_feature_test_df.shape[0]
+                test_combined = pd.concat([input_feature_test_df, target_feature_test_df], axis=1)
+                test_combined = test_combined.dropna().drop_duplicates()
+                input_feature_test_df = test_combined.drop(columns=[TARGET_COLUMN])
+                target_feature_test_df = test_combined[TARGET_COLUMN]
+                logging.info(f"Test cleaned: {before_test} -> {input_feature_test_df.shape[0]} rows")
+
 
                 logging.info("Got train features and test features of Testing dataset")
 
-                logging.info(
-                    "Applying preprocessing object on training dataframe and testing dataframe"
-                )
+                logging.info("Applying preprocessing object on training dataframe and testing dataframe")
 
                 input_feature_train_arr = preprocessor.fit_transform(input_feature_train_df)
-
-                logging.info(
-                    "Used the preprocessor object to fit transform the train features"
-                )
+                logging.info("Used the preprocessor object to fit transform the train features")
 
                 input_feature_test_arr = preprocessor.transform(input_feature_test_df)
-
                 logging.info("Used the preprocessor object to transform the test features")
 
                 logging.info("Applying SMOTEENN on Training dataset")
 
-                smt = SMOTEENN(sampling_strategy="minority")
+                smt = SMOTEENN(sampling_strategy="minority",smote=SMOTE(k_neighbors=2))
 
                 input_feature_train_final, target_feature_train_final = smt.fit_resample(
                     input_feature_train_arr, target_feature_train_df
