@@ -1,0 +1,65 @@
+columns:
+  - id: int
+  - age: int
+  - sex: category
+  - dataset: category
+  - cp: category
+  - trestbps: int
+  - chol: int
+  - fbs: category
+  - restecg: category
+  - thalch: int
+  - exang: category
+  - oldpeak: int
+  - slope: category
+  - ca: int
+  - thal: category
+  - num: int
+
+numerical_columns:
+  - id
+  - age
+  - trestbps
+  - chol
+  - thalch
+  - oldpeak
+  - ca
+  - num
+
+categorical_columns:
+  - sex
+  - dataset
+  - cp
+  - fbs
+  - restecg
+  - exang
+  - slope
+  - thal
+
+drop_columns:
+  - dataset
+  - chol
+  - fbs
+  - ca
+  - thal
+
+# for data transformation
+# num_features:
+#   - no_of_employees
+#   - prevailing_wage
+#   - company_age
+
+# or_columns:
+#   - has_job_experience
+#   - requires_job_training
+#   - full_time_position
+#   - education_of_employee
+
+# oh_columns:
+#   - continent
+#   - unit_of_wage
+#   - region_of_employment
+
+# transform_columns:
+#   - no_of_employees
+#   - company_age
