@@ -98,11 +98,11 @@ class ModelTrainer:
                 logging.info("No best model found with score more than base score")
                 raise Exception("No best model found with score more than base score")
 
-            usvisa_model = HeartDiseaseModel(preprocessing_object=preprocessing_obj,
+            heartdiseases_model = HeartDiseaseModel(preprocessing_object=preprocessing_obj,
                                        trained_model_object=best_model_detail.best_model)
-            logging.info("Created usvisa model object with preprocessor and model")
+            logging.info("Created heartdiseases model object with preprocessor and model")
             logging.info("Created best model file path.")
-            save_object(self.model_trainer_config.trained_model_file_path, usvisa_model)
+            save_object(self.model_trainer_config.trained_model_file_path, heartdiseases_model)
 
             model_trainer_artifact = ModelTrainerArtifact(
                 trained_model_file_path=self.model_trainer_config.trained_model_file_path,

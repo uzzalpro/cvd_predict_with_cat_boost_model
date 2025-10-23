@@ -33,10 +33,15 @@ TEST_FILE_NAME: str = "test.csv"
 SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
 
 
-AWS_ACCESS_KEY_ID_ENV_KEY = "AWS_ACCESS_KEY_ID"
-AWS_SECRET_ACCESS_KEY_ENV_KEY = "AWS_SECRET_ACCESS_KEY"
-REGION_NAME = "us-east-1"
+# AWS_ACCESS_KEY_ID_ENV_KEY = "AWS_ACCESS_KEY_ID"
+# AWS_SECRET_ACCESS_KEY_ENV_KEY = "AWS_SECRET_ACCESS_KEY"
+# REGION_NAME = "us-east-1"
 
+"""
+Azure Blob Storage
+"""
+STORAGE_ACCOUNT_CONNECTION="DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+STORAGE_ACCOUNT_CONTAINER="cvd-uploads"
 
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
@@ -79,8 +84,8 @@ MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config", "model.yaml")
 
 
 MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
-MODEL_BUCKET_NAME = "usvisabucket25"
-MODEL_PUSHER_S3_KEY = "model-registry"
+MODEL_BLOB_NAME = "cvd-uploads"
+MODEL_PUSHER_BLOB_PATH = "model-registry"
 
 
 APP_HOST = "0.0.0.0"

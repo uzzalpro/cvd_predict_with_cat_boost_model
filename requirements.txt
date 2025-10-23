@@ -21,6 +21,8 @@ fastapi
 uvicorn
 jinja2
 python-multipart
+# pip install azure-storage-blob pandas
+
 -e .
 
 
