@@ -58,8 +58,18 @@ pip install -r requirements.txt
 ### Export the  environment variable
 ```bash
 
+```
+### Azure Blob Storage Service
+```bash
+export STORAGE_ACCOUNT_CONNECTION=<STORAGE_ACCOUNT_CONNECTION>
+export STORAGE_ACCOUNT_CONTAINER=<STORAGE_ACCOUNT_CONTAINER>
+
 
 export MONGODB_URL="mongodb+srv://<db_user>:<password>@cluster0.fspozs0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+## Azure Blob Storage?
+
+
 
 export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
 

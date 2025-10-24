@@ -34,7 +34,7 @@ class HeartDieseaseEstimator:
         :return:
         """
 
-        return self.blobS.load_model(self.model_path,blob_name=self.blob_name)
+        return self.blobS.load_model(model_name=self.model_path)
 
     def save_model(self,from_file,remove:bool=False)->None:
         """
